@@ -1,5 +1,5 @@
 #Set working directory
-setwd(("C:/Users/Dan/Documents/GitHub/CompetitionTask"))
+setwd(("C:/Users/Dan/Documents/GitHub/CompTaskRepo"))
 
 
 ####################################
