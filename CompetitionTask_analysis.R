@@ -1,16 +1,17 @@
 #Set working directory
 setwd(("C:/Users/Dan/Documents/GitHub/CompTaskRepo"))
 
+#beth change
 
 ####################################
 ######  FIRST TIME ONLY -
 #####  Install some handy packages:
 ####  Remove the "# "in front of the line below and run the code. Replace the # after installing the packages, otherwise the R 
 #will reinstall the packates every time you run the script
-# install.packages(c("MASS", "robustbase", "robust", "mgcv", "scatterplot3d", "quantreg", "rrcov", "lars", "pwr", "mc2d", "psych", 
-#                    "Rfit","MBESS", "BayesFactor", "PoweR", "ggplot2", "reshape2", "plyr",
-#                     "rmarkdown", "car", "gridExtra", "bootES", "BEST","foreign","nlme","pastecs","multcomp","ggplot2","compute.es"
-#                    ,"ez","lattice","lme4","effects","diagram","png", "grid"))
+ install.packages(c("MASS", "robustbase", "robust", "mgcv", "scatterplot3d", "quantreg", "rrcov", "lars", "pwr", "mc2d", "psych", 
+                    "Rfit","MBESS", "BayesFactor", "PoweR", "ggplot2", "reshape2", "plyr",
+                     "rmarkdown", "car", "gridExtra", "bootES", "BEST","foreign","nlme","pastecs","multcomp","ggplot2","compute.es"
+                    ,"ez","lattice","lme4","effects","diagram","png", "grid"))
 
 ## load relevant packages 
 library(foreign)
