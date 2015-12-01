@@ -1,0 +1,59 @@
+---
+title: "beth analysis"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(foreign)
+library(car)
+library(ggplot2)
+library(pastecs)
+library(psych)
+library(plyr)
+library(multcomp)
+library(reshape2)
+library(compute.es)
+library(ez)
+library(lattice)
+library(lme4)
+library(png)
+library(grid)
+
+###### Import single trial data:
+# data <- read.csv("C:/subj/AllParticipantData_comp_CFQCAARS.csv", header=T)
+# data <- read.csv("//ad.monash.edu/home/User088/newmand/Desktop/AllParticipantData_comp_CFQCAARS/AllParticipantData_comp_CFQCAARS.csv", header=T, na.strings="#N/A")
+data <- read.csv("S:/R-MNHS-SPP/Bellgrove-data/CogBattery_UQ&Monash/AllParticipantData_comp_CFQCAARS.csv", header=T, na.strings="#N/A")
+#na.strings="#N/A" converts all #N/As in the document to NA.
+
+
+# Look at Column names:
+colnames(data)
+#Rename some of the columns how I like them:
+data<-rename(data, c("ResponseTime"="RT", "ResponseStatus"="Accuracy"))
+
+
+#Remove the one row that has a NAs:
+data<-data[complete.cases(data$RT),] 
+#Check number of Trials for each participant by running the function 'length', 
+#on "data$RT", broken down by ID
+num_trials1 <- ddply(data, c("ID"), summarise,
+                     Trials    = length(RT))
+#Have a look at this
+summary(num_trials1$Trials)#so everybody has 320 trials to start with
+
+
+#Calculate each participant's accuracy as a %
+Accuracy_checker <- ddply(data, c("ID"), summarise,
+                          Hits  = sum(Accuracy=="Correct"),
+                          Misses = sum(Accuracy=="Incorrect"))
+Accuracy_checker$Total=Accuracy_checker$Hits+Accuracy_checker$Misses
+Accuracy_checker$Accuracy=(Accuracy_checker$Hits/Accuracy_checker$Total)*100
+summary(Accuracy_checker$Accuracy)
+#Plot the accuracy distribution 
+hist(Accuracy_checker$Accuracy)
+```
+
