@@ -273,13 +273,33 @@ plot(eff.CAARS_H_SetSizeEffect, main=NULL, rug=T, ticks.x=NULL)
 ggplot(DF_DistHem_wide, aes(x=DF_DistHem_wide$CAARS_H, y=DF_DistHem_wide$SetSizeEffect)) +
   stat_smooth(level = 0.95,size=1) # - good they both look the same - I just wanted to check to make sure the fitted "effects" plot looked the same as plotting the raw data using ggplot
 
+residuals_KSS_CAARS_H_SetSizeEffect=residuals(CAARS_H)
+plot(residuals_KSS_CAARS_H_SetSizeEffect)
+qqnorm(residuals_KSS_CAARS_H_SetSizeEffect)
+qqline(residuals_KSS_CAARS_H_SetSizeEffect)
+hist(residuals_KSS_CAARS_H_SetSizeEffect)
+
 # Plot dat1utr_by_CFQ p=0.01558 * 
 eff.dat1utr_by_CFQ_SetSizeEffect <- Effect(c("CFQ", "dat1utr"), dat1utr_by_CFQ)
 plot(eff.dat1utr_by_CFQ_SetSizeEffect, layout=c(3,1), main=NULL, rug=T, multiline =F, alternating=F, ticks.x=NULL) 
 
+residuals_KSS_dat1utr_by_CFQ_SetSizeEffect=residuals(dat1utr_by_CFQ_SetSizeEffect)
+plot(residuals_KSS_dat1utr_by_CFQ_SetSizeEffect)
+qqnorm(residuals_KSS_dat1utr_by_CFQ_SetSizeEffect)
+qqline(residuals_KSS_dat1utr_by_CFQ_SetSizeEffect)
+hist(residuals_KSS_dat1utr_by_CFQ_SetSizeEffect)
+
+
 # Plot DistHem_by_dat1utr p=0.06446  
 eff.DistHem_by_dat1utr_SetSizeEffect <- Effect(c("DistHem", "dat1utr"), DistHem_by_dat1utr)
 plot(eff.DistHem_by_dat1utr_SetSizeEffect, layout=c(3,1), main=NULL, rug=F, multiline =F, alternating=F, ticks.x=NULL) #(Figure 2A of Newman et al. (2014) JoN paper, the trend still there)
+
+residuals_KSS_DistHem_by_dat1utr_SetSizeEffect=residuals(DistHem_by_dat1utr)
+plot(residuals_KSS_DistHem_by_dat1utr_SetSizeEffect)
+qqnorm(residuals_KSS_DistHem_by_dat1utr_SetSizeEffect)
+qqline(residuals_KSS_DistHem_by_dat1utr_SetSizeEffect)
+hist(residuals_KSS_DistHem_by_dat1utr_SetSizeEffect)
+
 #Sweet, this effect looks the same as the effect in 
 #Figure 2A of Newman et al. (2014) JoN paper  Which is nice to see. 
 #plot with ggplot:
@@ -300,6 +320,7 @@ ggplot(plotdata, aes(x=DistHem, y=SetSizeEffect, fill=dat1utr)) +
   theme(legend.text = element_text(size = 11, face = "bold")) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
         panel.background = element_blank(), axis.line = element_line(colour = "black"))  # - good they both look the same - I just wanted to check to make sure the fitted "effects" plot looked the same as plotting the raw data using ggplot
+
 
 
 ##############################################################################
@@ -490,7 +511,7 @@ DF_CueEffect_wide <- dcast(DF_collapsed, ID + Site + dat1utr + ConditionTag1 + C
 DF_CueEffect_wide$CueCost<-DF_CueEffect_wide$Invalid - DF_CueEffect_wide$Bilateral ########### BETH, this is an example of calculating the derived "Setsize effect" (mean RTs from trials with Eight minus those from from trials with Eight). The other tasks have similar derived measures you can calculate, such as the valid/invalid cueing effect 
 summary(DF_CueEffect_wide$CueCost)
 #Calculate CueCBenefit (bilateral - valid):
-DF_CueEffect_wide$CueBenefit<-DF_CueEffect_wide$Bilateral - DF_CueEffect_wide$Valid ########### BETH, this is an example of calculating the derived "Setsize effect" (mean RTs from trials with Eight minus those from from trials with Eight). The other tasks have similar derived measures you can calculate, such as the valid/invalid cueing effect 
+DF_CueEffect_wide$CueBenefit<-DF_CueEffect_wide$Bilateral - DF_CueEffect_wide$Valid 
 summary(DF_CueEffect_wide$CueBenefit)
 
 ###Now try model the collapsed CueCost data
@@ -517,6 +538,12 @@ anova(random_intercepts_only_CueCost, ConditionTag1, dat1utr, ConditionTag1_by_d
 # dat1utr_by_CAARS_H                     18 14050 14143 -7006.9    14014 7.8743      2     0.0195 *  
 # ConditionTag1_by_dat1utr_by_CFQ        20 14054 14157 -7006.9    14014 0.1252      2     0.9393    
 # ConditionTag1_by_dat1utr_by_CAARS_H    22 14056 14170 -7006.0    14012 1.8114      2     0.4043  
+
+residuals_KSS_ConditionTag1_by_dat1utr_by_CAARS_H=residuals(ConditionTag1_by_dat1utr_by_CAARS_H)
+plot(residuals_KSS_ConditionTag1_by_dat1utr_by_CAARS_H)
+qqnorm(residuals_KSS_ConditionTag1_by_dat1utr_by_CAARS_H)
+qqline(residuals_KSS_ConditionTag1_by_dat1utr_by_CAARS_H)
+hist(residuals_KSS_ConditionTag1_by_dat1utr_by_CAARS_H)
 
 
 ###Now try model the collapsed CueBenefit data
@@ -545,6 +572,12 @@ anova(random_intercepts_only_CueBenefit, ConditionTag1, dat1utr, ConditionTag1_b
 #ConditionTag1_by_dat1utr_by_CFQ     20 13804 13907 -6882.0    13764 2.1934      2     0.3340    
 #ConditionTag1_by_dat1utr_by_CAARS_H 22 13808 13921 -6881.9    13764 0.1803      2     0.9138  
 
+
+residuals_KSS_CAARS_H_SetSizeEffect=residuals(CAARS_H)
+plot(residuals_KSS_CAARS_H_SetSizeEffect)
+qqnorm(residuals_KSS_CAARS_H_SetSizeEffect)
+qqline(residuals_KSS_CAARS_H_SetSizeEffect)
+hist(residuals_KSS_CAARS_H_SetSizeEffect)
 
 ############################################################################################################
 #######                               Plot significant effects                                       #######
@@ -776,6 +809,8 @@ DF_IncongCost_wide$FlankerCost<-DF_IncongCost_wide$IncongruentRT - DF_IncongCost
 summary(DF_IncongCost_wide$FlankerCost)
 
 ###Now try model the collapsed FlankerCost data
+
+## DAN: I'm not sure if this is correct: Specifically, having the incongruent and neutral conditions separate. Is there another way I should be doing this?
 #First make a baseline model with random intercepts and no fixed effects:
 random_intercepts_only_FlankerCost<-lmer(FlankerCost ~ 1 + (1 | Site/ID) + (1|IncongruentLR) + (1|NeutralLR), data = DF_IncongCost_wide, na.action = na.omit, REML=FALSE)
 
