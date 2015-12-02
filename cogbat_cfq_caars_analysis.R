@@ -1,3 +1,5 @@
+##Dan test change - just want to test pushing a change to Beth's Repo
+
 ####################################
 ####################################
 #
@@ -5,7 +7,7 @@
 #
 # 1. explore the relationship between CFQ and each of the set size effect, cuing cost, cuing benefit and flanker interference effects.
 #
-# 2. explore the relationship between DAT1 and CFQ/ADHD scores and the cuing data (probably nothing)
+# 2. explore the relationship between DAT1 and CFQ/ADHD scores and the cuing data (probably nothing!)
 #    and competition data (without regard to target position).
 #
 ####################################
